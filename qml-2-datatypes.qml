@@ -24,6 +24,8 @@ Window {
     property var anArray: [1, 2, 3, "four", "five", (function() { return "six"; })]
     property var anObject: { "foo": 10, "bar": 20 }
     property var aFunction: (function() { return "one"; })
+    property var aFont: Qt.font({family: "Consolas", pointSize: 30, bold: true})
+    property date mDate: "2022-06-21"
 
     Rectangle{
         width: 200
@@ -35,7 +37,8 @@ Window {
             id: mTextId
             anchors.centerIn: parent
             text: mString
-            font.bold: isFemale?true:false
+           // font.bold: isFemale?true:false
+            font: aFont
         }
     }
 
@@ -55,5 +58,23 @@ Window {
         console.log("o valor de aString: "+aString)
         console.log("o valor de anotherString: "+anotherString)
         console.log("o valor de aRect: "+" x: "+aRect.x+" y: "+aRect.y+" width: "+aRect.width+" height: "+aRect.height)
+        console.log("o tamanho do array eh: "+anArray.length)
+
+        anArray.forEach(function(value, index) {
+           if(index===5)
+             console.log(value())
+           else{           
+             console.log(value)
+           }
+        })
+        for(var i = 0;i< anArray.length;i++){
+           if(i===5)
+             console.log(anArray[i]())
+           else{           
+             console.log(anArray[i])
+           }
+        }
+        console.log("The date is: "+mDate)
+        console.log("The funcion is: "+aFunction())
     }
 }
